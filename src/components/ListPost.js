@@ -4,6 +4,7 @@ import { List } from 'antd'
 const ListPost = ({ data }) => {
   return (
     <List
+      locale={{ emptyText: 'Tidak ada post' }}
       itemLayout="horizontal"
       dataSource={data}
       renderItem={item => (

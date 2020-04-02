@@ -11,7 +11,7 @@ const Home = () => {
 
   return (
     <Row justify="center">
-      <Col span={12}>
+      <Col span={10}>
         <PostForm savePost={savePost} />
         <Card>
           <ListPost data={post} />

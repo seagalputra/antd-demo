@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import insertPost from '../domain/insertPost'
+import { insertPost } from '../domain/post'
 
 const useSavePost = () => {
   const [post, setPost] = useState([])

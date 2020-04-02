@@ -1,4 +1,4 @@
-import insertPost from '../domain/insertPost'
+import { insertPost } from '../domain/post'
 
 describe('Insert Post function', () => {
   it('insert new post', () => {

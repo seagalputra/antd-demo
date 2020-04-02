@@ -5,7 +5,7 @@ const Login = () => {
   return (
     <Row justify="center">
       <Col>
-        <h1>This is Login Page!</h1>
+        <h1>Login Page!</h1>
       </Col>
     </Row>
   )
