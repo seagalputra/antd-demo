@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import PrivateRoute from './routes/PrivateRoute'
 import { Layout } from 'antd'
 
 import NavigationBar from './components/NavigationBar'
@@ -26,9 +27,9 @@ const App = () => {
         </Header>
         <Content style={content}>
           <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/register" component={Registration} />
-            <Route path="/login" component={Login} />
+            <Route path="/" exact component={Login} />
+            <Route path="/register" exact component={Registration} />
+            <PrivateRoute path="/dashboard" exact component={Home} />
           </Switch>
         </Content>
       </Layout>

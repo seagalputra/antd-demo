@@ -1,20 +1,29 @@
-import React from 'react'
-import { Row, Col, Typography, Form, Input, Button, Checkbox } from 'antd'
+import React, { useState } from 'react'
+import { Row, Col, Typography, Form, Input, Button, Checkbox, Spin } from 'antd'
+import { LoadingOutlined } from '@ant-design/icons'
 import { useHistory } from 'react-router-dom'
 
-import { loginUser } from '../domain/login'
+import { loginUser } from '../domain/auth'
 import { insertStorage } from '../domain/storage'
 
+const antIcon = (
+  <LoadingOutlined style={{ fontSize: 24, color: '#ffffff' }} spin />
+)
+
 const Login = () => {
+  const [isLoading, setIsLoading] = useState(false)
+
   const history = useHistory()
   const { Title, Text } = Typography
 
   const handleLogin = () => {
+    setIsLoading(true)
     loginUser().then(data => {
       const { token } = data
 
       insertStorage('app', token)
-      history.push('/')
+      setIsLoading(false)
+      history.push('/dashboard')
     })
   }
 
@@ -45,7 +54,7 @@ const Login = () => {
 
           <Form.Item>
             <Button type="primary" htmlType="submit" block>
-              Masuk
+              {isLoading ? <Spin indicator={antIcon} /> : 'Masuk'}
             </Button>
           </Form.Item>
         </Form>

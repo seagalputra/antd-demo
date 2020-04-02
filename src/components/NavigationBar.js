@@ -1,6 +1,9 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 import { Menu } from 'antd'
+
+import { isLoggedIn } from '../domain/auth'
+import { handleLogout } from '../domain/auth'
 
 const styles = {
   logo: {
@@ -14,20 +17,24 @@ const styles = {
 
 const NavigationBar = () => {
   const { logo } = styles
+  const history = useHistory()
 
   return (
     <>
       <div style={logo} />
       <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
         <Menu.Item key="1">
-          <NavLink to="/">Beranda</NavLink>
+          <NavLink to="/dashboard">Beranda</NavLink>
         </Menu.Item>
-        <Menu.Item key="2">
-          <NavLink to="/register">Registrasi</NavLink>
-        </Menu.Item>
-        <Menu.Item key="3">
-          <NavLink to="/login">Login</NavLink>
-        </Menu.Item>
+        {isLoggedIn() ? (
+          <Menu.Item key="2" onClick={() => handleLogout(history)}>
+            Logout
+          </Menu.Item>
+        ) : (
+          <Menu.Item key="3">
+            <NavLink to="/register">Registrasi</NavLink>
+          </Menu.Item>
+        )}
       </Menu>
     </>
   )
